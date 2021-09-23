@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Product = require('./models/Product')
+const Product = require('./models/Product');
 
 mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(data => {
@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost:27017/test', { useNewUrlParser: true, useU
         console.log(err);
     })
 
-const potatoa = new Product({ name: 'Potato', price: '1.55', category: 'vegetable' })
+const potatoa = new Product({ name: 'Potato', price: '1.55', category: 'vegetable' });
 
 const seedProducts = [
     {
@@ -41,7 +41,7 @@ const seedProducts = [
 
 Product.insertMany(seedProducts)
     .then(res => {
-        console.log(res)
+        console.log(res);
     }).catch(err => {
-        console.log(err)
+        console.log(err);
     })
