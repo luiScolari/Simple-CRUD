@@ -22,7 +22,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 
-const categories = ['fruit', 'vegetable', 'dairy', 'sarsixa']
+const categories = ['fruit', 'vegetable', 'dairy']
 
 
 
