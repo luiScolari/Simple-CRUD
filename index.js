@@ -27,12 +27,18 @@ const categories = ['fruit', 'vegetable', 'dairy'];
 
 
 app.get('/products', async (req, res) => {
-    const products = await Product.find({});
-    res.render('index.ejs', { products });
+    const { category } = req.query;
+    if (category) {
+        const products = await Product.find({ category });
+        res.render('index.ejs', { products, category })
+    } else {
+        const products = await Product.find({});
+        res.render('index.ejs', { products, category: 'Products'})
+    }
 })
 
 app.get('/products/new', async (req, res) => {
-    res.render('new.ejs', {Product, categories});
+    res.render('new.ejs', { Product, categories });
 })
 
 app.post('/products', (req, res) => {
@@ -40,6 +46,7 @@ app.post('/products', (req, res) => {
     newProduct.save();
     res.redirect('/products');
 })
+
 
 app.delete('/products/:id', async (req, res) => {
     const { id } = req.params;
@@ -60,7 +67,7 @@ app.get('/products/:id/edit', async (req, res) => {
 
 app.put('/products/:id', async (req, res) => {
     const { id } = req.params;
-    const product = await Product.findByIdAndUpdate(id, req.body, {runValidations: true, new: true});
+    const product = await Product.findByIdAndUpdate(id, req.body, { runValidations: true, new: true });
     res.redirect(`/products/${product._id}`);
 })
 

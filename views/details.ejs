@@ -14,7 +14,7 @@
     <h2><%= product.name %> </h2>
     <ul>
         <li>Price: R$<%= product.price %> </li>
-        <li>Category: <%= product.category %> </li>
+        <li>Category: <a href="/products?category=<%= product.category %>"> <%= product.category %> </a></li>
     </ul>
     <a href="/products">Back to products</a> <a href="<%= product._id %>/edit">Edit</a>
     <form action="/products/<%= product._id %>?_method=DELETE" method="POST">
