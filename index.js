@@ -41,16 +41,16 @@ app.get('/products/new', async (req, res) => {
     res.render('new.ejs', { Product, categories });
 })
 
-app.post('/products', (req, res) => {
+app.post('/products', async (req, res) => {
     const newProduct = new Product(req.body);
-    newProduct.save();
+    await newProduct.save();
     res.redirect('/products');
 })
 
 
 app.delete('/products/:id', async (req, res) => {
     const { id } = req.params;
-    const product = await Product.findOneAndDelete(id);
+    const product = await Product.findByIdAndDelete(id);
     res.redirect('/products');
 })
 
